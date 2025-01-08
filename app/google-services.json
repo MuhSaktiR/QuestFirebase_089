@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "886422607724",
+    "project_id": "firabasepam",
+    "storage_bucket": "firabasepam.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886422607724:android:702186fc88f7198627c549",
+        "android_client_info": {
+          "package_name": "com.example.firabasepam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeb1b_akOl18SmFOgdUoEAI8OgoHrJF10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
