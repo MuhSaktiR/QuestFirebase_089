@@ -107,7 +107,7 @@ data class MahasiswaEvent(
 fun MahasiswaEvent.toMhsModel(): Mahasiswa = Mahasiswa (
     nim = nim,
     nama = nama,
-    jenis_kelamin = jenisKelamin,
+    jenis_kelamin = jenis_kelamin,
     alamat = alamat,
     kelas = kelas,
     angkatan = angkatan
