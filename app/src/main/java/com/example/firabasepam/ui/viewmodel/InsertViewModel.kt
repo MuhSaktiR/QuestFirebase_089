@@ -20,7 +20,7 @@ class InsertViewModel (
         private set
 
     // Memperbarui state berdasarkan input pengguna
-    fun updateUiState(mahasiswaEvent: MahasiswaEvent) {
+    fun updateState(mahasiswaEvent: MahasiswaEvent) {
         uiEvent = uiEvent.copy(
             insertUiEvent = mahasiswaEvent,
         )
