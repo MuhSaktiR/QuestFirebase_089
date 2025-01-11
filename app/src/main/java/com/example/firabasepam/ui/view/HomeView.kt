@@ -76,7 +76,7 @@ fun HomeScreen(
             retryAction = { viewModel.getMhs() }, modifier = Modifier.padding(innerPadding),
             onDetailClick = onDetailClick,
             onDeleteClick = {
-                viewModel.getMhs()
+                viewModel.deleteMhs(it)
             }
         )
     }
@@ -191,12 +191,12 @@ fun MhsCard(
                     style = MaterialTheme.typography.titleLarge,
                 )
                 Spacer(Modifier.weight(1f))
-//                IconButton(onClick = { showDialog = true }) {
-//                    Icon(
-//                        imageVector = Icons.Default.Delete,
-//                        contentDescription = null,
-//                    )
-//                }
+                IconButton(onClick = { showDialog = true }) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = null,
+                    )
+                }
                 Text(
                     text = mahasiswa.nim,
                     style = MaterialTheme.typography.titleMedium
