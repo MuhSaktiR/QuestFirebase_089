@@ -7,6 +7,7 @@ import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.tasks.await
 
 class NetworkMahasiswaRepository(
     private val firestore: FirebaseFirestore
@@ -15,7 +16,6 @@ class NetworkMahasiswaRepository(
         val mhsCollection = firestore.collection("Mahasiswa")
             .orderBy("nama", Query.Direction.ASCENDING)
             .addSnapshotListener{value, error -> // membuka collection
-
                 if (value != null) {
                     val mhsList = value.documents.mapNotNull {
                         it.toObject(Mahasiswa::class.java)!!
@@ -29,7 +29,11 @@ class NetworkMahasiswaRepository(
     }
 
     override suspend fun insertMahasiswa(mahasiswa: Mahasiswa) {
-        TODO("Not yet implemented")
+        try {
+            firestore.collection("Mahasiwsa").add(mahasiswa).await()
+        } catch (e: Exception) {
+            throw Exception("Gagal menambahkan data mahasiswa: ${e.message}")
+        }
     }
 
     override suspend fun updateMahasiswa(nim: String, mahasiswa: Mahasiswa) {
