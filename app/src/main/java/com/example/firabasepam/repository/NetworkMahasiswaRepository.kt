@@ -14,7 +14,7 @@ class NetworkMahasiswaRepository(
 ) : MahasiswaRepository {
     override suspend fun getMahasiswa(): Flow<List<Mahasiswa>> = callbackFlow { // Mengapa menggunakan callbackflow?
         val mhsCollection = firestore.collection("Mahasiswa")
-            .orderBy("nama", Query.Direction.ASCENDING)
+            .orderBy("nama", Query.Direction.DESCENDING)
             .addSnapshotListener{value, error -> // membuka collection
                 if (value != null) {
                     val mhsList = value.documents.mapNotNull {
