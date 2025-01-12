@@ -164,6 +164,17 @@ fun FormMahasiswa(
     ) {
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
+            value = mahasiswaEvent.nim, onValueChange = {
+                onValueChange(mahasiswaEvent.copy(nim = it))
+            },
+            label = { Text("NIM") },
+            isError = errorState.nim != null,
+            placeholder = { Text("Masukkan NIM") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+        Text(text = errorState.nim ?: "", color = Color.Red)
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
             value = mahasiswaEvent.nama,
             onValueChange = {
                 onValueChange(mahasiswaEvent.copy(nama = it))
@@ -176,17 +187,6 @@ fun FormMahasiswa(
             text = errorState.nama ?: "",
             color = Color.Red
         )
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = mahasiswaEvent.nim, onValueChange = {
-                onValueChange(mahasiswaEvent.copy(nim = it))
-            },
-            label = { Text("NIM") },
-            isError = errorState.nim != null,
-            placeholder = { Text("Masukkan NIM") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-        Text(text = errorState.nim ?: "", color = Color.Red)
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = "Jenis Kelamin")
         Row(
