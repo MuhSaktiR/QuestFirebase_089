@@ -49,26 +49,43 @@ class NetworkMahasiswaRepository(
 
     override suspend fun deleteMahasiswa(mahasiswa: Mahasiswa) {
         try {
-            firestore.collection("Mahasiswa")
-                .document(mahasiswa.nim)
-                .delete()
+            val querySnapshot = firestore.collection("Mahasiswa")
+                .whereEqualTo("nim", mahasiswa.nim)
+                .get()
                 .await()
+
+            if (!querySnapshot.isEmpty) {
+                val documentId = querySnapshot.documents[0].id
+                firestore.collection("Mahasiswa")
+                    .document(documentId)
+                    .delete()
+                    .await()
+            } else {
+                throw Exception("Mahasiswa dengan NIM ${mahasiswa.nim} tidak ditemukan.")
+            }
         } catch (e: Exception) {
-            throw Exception("Gagal menghapus data mahasiswa: ${e.message}")
+            throw Exception("Error deleting Mahasiswa: ${e.message}")
         }
     }
 
     override suspend fun getMahasiswaByNim(nim: String) : Flow<Mahasiswa> = callbackFlow {
-        val mhsDocument =  firestore.collection("Mahasiswa")
-            .document(nim)
+        val mhsCollection = firestore.collection("Mahasiswa")
+            .whereEqualTo("nim", nim)
             .addSnapshotListener { value, error ->
-                if (value != null) {
-                    val mhs = value.toObject(Mahasiswa::class.java)!!
-                    trySend(mhs)
+                if (error != null) {
+                    close(error)
+                } else {
+                    if (value != null && value.documents.isNotEmpty()) {
+                        val mahasiswa = value.documents.firstOrNull()?.toObject(Mahasiswa::class.java)
+                        mahasiswa?.let {
+                            trySend(it)
+                        } ?: close(Exception("Mahasiswa tidak ditemukan"))
+                    } else {
+                        close(Exception("Mahasiswa tidak ditemukan"))
+                    }
                 }
             }
-        awaitClose {
-            mhsDocument.remove()
-        }
+
+        awaitClose { mhsCollection.remove() }
     }
 }

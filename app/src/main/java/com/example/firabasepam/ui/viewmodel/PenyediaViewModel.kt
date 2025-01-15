@@ -11,6 +11,7 @@ object PenyediaViewModel {
     val Factory = viewModelFactory {
         initializer { HomeViewModel(aplikasiMhs().container.mahasiswaRepository) }
         initializer { InsertViewModel(aplikasiMhs().container.mahasiswaRepository) }
+        initializer { DetailViewModel(createSavedStateHandle(),aplikasiMhs().container.mahasiswaRepository)}
     }
 }
 

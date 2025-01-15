@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -27,6 +28,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -173,6 +175,17 @@ fun MhsCard(
 ) {
     var showDialog by remember { mutableStateOf(false) }
 
+    if (showDialog) {
+        DeleteConfirmationDialog(
+            onDeleteConfirm = {
+                showDialog = false
+                onDeleteClick(mahasiswa)
+            },
+            onDeleteCancel = {
+                showDialog = false
+            }
+        )
+    }
     Card(
         modifier = modifier,
         shape = MaterialTheme.shapes.medium,
@@ -203,13 +216,35 @@ fun MhsCard(
                 )
             }
             Text(
-                text = mahasiswa.kelas,
+                text = mahasiswa.alamat,
                 style = MaterialTheme.typography.titleMedium
             )
             Text(
-                text = mahasiswa.alamat,
+                text = mahasiswa.judulSkripsi,
                 style = MaterialTheme.typography.titleMedium
             )
         }
     }
+}
+
+@Composable
+private fun DeleteConfirmationDialog(
+    onDeleteConfirm: () -> Unit,
+    onDeleteCancel: () -> Unit,
+    modifier: Modifier = Modifier
+){
+    AlertDialog(onDismissRequest = { /*Do nothing*/ },
+        title = { Text("Delete Data")},
+        text = { Text("Apakah anda yakin ingin menghapus data?")},
+        dismissButton = {
+            TextButton(onClick = { onDeleteCancel() }) {
+                Text(text = "Cancel")
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onDeleteConfirm() }) {
+                Text(text = "Yes")
+            }
+        }
+    )
 }
