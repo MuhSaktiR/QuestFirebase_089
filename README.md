@@ -1,7 +1,7 @@
 Menu Halaman Home
 
 
-![Screenshot 2025-01-15 140624](https://github.com/user-attachments/assets/07b2f61b-5cb7-4de9-93a5-b7e702152792)
+![Screenshot 2025-01-15 141129](https://github.com/user-attachments/assets/82664ae5-fa26-4c75-9b4e-00f152d8f68c)
 
 
 Menu Halaman Insert
@@ -27,7 +27,7 @@ Menu Halaman Insert
 Tampilan Data muncul di Menu Halaman Home
 
 
-![Screenshot 2025-01-15 141129](https://github.com/user-attachments/assets/8f3ef08c-ad28-4d6e-ba76-5eeb5e5743be)
+![Screenshot 2025-01-15 140624](https://github.com/user-attachments/assets/e5470f44-92b0-4140-997e-a77690720e64)
 
 
 Firebase
