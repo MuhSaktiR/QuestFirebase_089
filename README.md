@@ -30,6 +30,12 @@ Tampilan Data muncul di Menu Halaman Home
 ![Screenshot 2025-01-15 140624](https://github.com/user-attachments/assets/e5470f44-92b0-4140-997e-a77690720e64)
 
 
+Detail 
+
+
+![Screenshot 2025-01-15 140634](https://github.com/user-attachments/assets/53a3fd1c-29ef-4d0d-b9f6-424f38694c16)
+
+
 Firebase
 
 
